@@ -5,14 +5,17 @@ document.getElementsByTagName("head")[0].appendChild(script);
 
 $(document).ready(() => {
 
-    $(".tr_phase2_headerPanel.tr_phase2_headerPanel_ghr.sliderInitDone").show();
+//triggers shopping cart link in order to have access to images in cart
+    $("#tr_phase2_ShoppingBg").trigger("click")
+
+console.log('h2 ', $("h2"))
     let numItems = $(".number-items.boss-number-items.nonzero-items").text();
     let subtotal = $(".subtotal").text();
 
-//     let hiddenPanel = $(
-//       ".tr_phase2_headerPanel.tr_phase2_headerPanel_ghr.sliderInitDone"
-//     );
-//     console.log("hiddenPanel.... ", hiddenPanel);
+    let hiddenPanel = $(
+      ".tr_phase2_headerPanel.tr_phase2_headerPanel_ghr.sliderInitDone"
+    );
+    console.log("hiddenPanel.... ", hiddenPanel);
 
     let images = [...$(".kas-newpb-product-image")].map((el) => el.src);
 
