@@ -48,8 +48,11 @@ console.log('h2 ', $("h2"))
     popupDiv.append(`<div> ${numItems} </div>`)
     popupDiv.append(`<div> ${subtotal} </div>`)
     console.log('image.... ',images[0] )
-    popupDiv.append(`<img src="${images[0]}" width=25% height=25%/>`)
+//     popupDiv.append(`<img src="${images[0]}" width=25% height=25%/>`)
 
+    $.map(images, el => {
+    	popupDiv.append(`<img src="${el}" width=25% height=25% />`)
+    })
 
   };
 
