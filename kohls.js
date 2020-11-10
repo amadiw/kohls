@@ -4,17 +4,18 @@ document.getElementsByTagName("head")[0].appendChild(script);
 //creates script element
 
 $(document).ready(() => {
-  const shoppingCart = () => {
+
     $(".tr_phase2_headerPanel.tr_phase2_headerPanel_ghr.sliderInitDone").show();
     let numItems = $(".number-items.boss-number-items.nonzero-items").text();
     let subtotal = $(".subtotal").text();
 
-    let hiddenPanel = $(
-      ".tr_phase2_headerPanel.tr_phase2_headerPanel_ghr.sliderInitDone"
-    );
-    console.log("hiddenPanel.... ", hiddenPanel);
+//     let hiddenPanel = $(
+//       ".tr_phase2_headerPanel.tr_phase2_headerPanel_ghr.sliderInitDone"
+//     );
+//     console.log("hiddenPanel.... ", hiddenPanel);
 
     let images = [...$(".kas-newpb-product-image")].map((el) => el.src);
+
     console.log(
       "items: ",
       numItems,
@@ -23,7 +24,7 @@ $(document).ready(() => {
       "images: ",
       images
     );
-  };
+
 
   const popup = () => {
     const popupDiv = $('<div id="popup"> </div>');
@@ -39,17 +40,20 @@ $(document).ready(() => {
       transform: "translate(-50%, -50%)",
     });
     console.log("hello from popup()");
+    console.log('subtotal... ', subtotal)
 
-    // const itemsQty = $('<div id="itemsQty">Items in Cart: ${numItems} </div>')
-    // $('#popup').appendTo(itemsQty)
-    // $( ".inner" ).append( "<p>Test</p>" )
+    popupDiv.append(`<div> ${numItems} </div>`)
+    popupDiv.append(`<div> ${subtotal} </div>`)
+    console.log('image.... ',images[0] )
+    popupDiv.append(`<img src="${images[0]}" width=25% height=25%/>`)
+
+
   };
 
-  shoppingCart();
 
   const overlay = () => {
     const overlayDiv = $('<div id="overlay"> </div>').css({
-      position: "relative",
+      position: "fixed",
       height: "100%",
       width: "100%",
       top: "0",
@@ -67,30 +71,17 @@ $(document).ready(() => {
     $("#open-drawer").hide();
     $("#overlay").fadeIn();
   };
+
   $(window).scroll(() => {
     if (
       $(window).scrollTop() / ($(document).height() - $(window).height()) >=
       0.9
     ) {
-      //                 alert('window scrolled!')
-      //$('#container').css('background', 'green')
 
       overlay();
-
       popup();
     }
   });
 });
 
-/* available = $(document).height();
-    percentage_of_page = 0.5;
-    half_screen = available * percentage_of_page;
-    height = $(window).scrollTop();
-    if ( height > half_screen ) {
 
-var scrollTop = $(window).scrollTop();
-					var docHeight = $(document).height();
-					var winHeight = $(window).height();
-					var scrollPercent = (scrollTop) / (docHeight - winHeight);
-					var scrollPercentRounded = Math.round(scrollPercent*100)
-    */
