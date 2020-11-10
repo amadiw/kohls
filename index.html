@@ -1,30 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kohls</title>
-  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-</head>
-<body>
-  <div id=></div>
-  <div id="footer-top-of-page" tabindex="-1">footer-top-of-page</div>
-  <div id="container">container</div>
-  <img src="https://images.theconversation.com/files/350865/original/file-20200803-24-50u91u.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=1200.0&fit=crop" width="75%" height="75%">
-  <script>
-    $().ready(()=> {
-      //declare cart variables
-      //add overlay div
-      const overlay = () => {
-        const overlayDiv =
-      }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kohls</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  </head>
+  <body>
+    <div id="footer-top-of-page" tabindex="-1">footer-top-of-page</div>
+    <div id="container">container</div>
+    <div id="overlay">
+      <img
+        src="https://images.theconversation.com/files/350865/original/file-20200803-24-50u91u.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=1200.0&fit=crop"
+        width="75%"
+        height="75%"
+      />
+    </div>
+    <script>
+        $().ready(()=> {
+          //declare cart variables
+          //add overlay div
+          // const overlay = () => {
+          //   const overlayDiv =
+          // }
 
 
-      //add popup div
-      //scroll trigger function
+          // $('#trigger').click(function() {
+          $('#overlay').fadeIn(300);
+       });
+
+      //  $('#close').click(function() {
+      //     $('#overlay').fadeOut(300);
+      //  });
+
+          //add popup div
+          //scroll trigger function
 
 
-    })
-  </script>
-</body>
+        })
+    </script>
+  </body>
 </html>
