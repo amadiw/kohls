@@ -7,6 +7,7 @@
 
   console.log("items: ", numItems, "subtotal: ", subtotal, "images: ", images);
 
+  //popup modal
   const popup = () => {
     const popupDiv = $('<div id="popup"> </div>');
 
@@ -21,9 +22,9 @@
       transform: "translate(-50%, -50%)",
     });
 
-    popupDiv.append('<button type="button" id="dismissPopup"> X </button>');
+    popupDiv.append('<button type="button" id="close"> X </button>');
     //      dismiss button action
-    $("#dismissPopup").css("float", "right");
+    $("#close").css("float", "right");
     popupDiv.append('<div id="redirectCart"> Go back to cart </div>');
     popupDiv.append(`<div id="numItems"> Items in cart:  ${numItems} </div>`);
     popupDiv.append(`<div id="subtotal"> Subtotal:  ${subtotal} </div>`);
@@ -35,10 +36,16 @@
       );
     });
 
-    $("#container").on("click", "#dismissPopup", () => {
-      console.log("X was clicked");
-      $("#popup").hide();
-    });
+    //close popup
+    $("#close").click(() => {
+      console.log('POPUP CLICKED')
+      $("#overlay").hide()
+//       $("#popup").css('background-color', 'green') //why does this work and hide doesn't!!!
+    })
+    // $("#container").on("click", "#dismissPopup", () => {
+    //   console.log("X was clicked");
+    //   $("#popup").hide();
+    // });
 
     $("#redirectCart").click(() => {
       console.log("redirect clicked");
@@ -46,6 +53,7 @@
     });
   };
 
+  //opaque overlay
   const overlay = () => {
     const overlayDiv = $('<div id="overlay"> </div>').css({
       position: "fixed",
@@ -67,12 +75,16 @@
     $("#open-drawer").hide();
     $(".slick-track").hide();
     $("#tce-hp-ml-1").hide();
+    $("#oo_tab").hide()
 
     $("#overlay").fadeIn();
   };
 
   //trigger when user scrolls >=90% of page
   $(window).scroll(() => {
+    //console.log('window.scrollTop: ', $(window).scrollTop) //515
+    //console.log('document.height: ', $(document).height()) //1519
+    //console.log('window.height', $(window).height()) //946
     if (
       $(window).scrollTop() / ($(document).height() - $(window).height()) >=
       0.9
