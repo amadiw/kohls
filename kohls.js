@@ -1,27 +1,11 @@
-let script = document.createElement("script");
-script.src = "https://code.jquery.com/jquery-3.5.1.min.js";
-document.getElementsByTagName("head")[0].appendChild(script);
-//creates script element
+(kohls => {
+  $("#tr_phase2_ShoppingBg").trigger("click");
 
-$(document).ready(() => {
+  let numItems = $(".number-items.boss-number-items.nonzero-items").text();
+  let subtotal = $(".subtotal").text();
+  let images = [...$(".kas-newpb-product-image")].map((el) => el.src);
 
-//triggers shopping cart link in order to have access to images in cart
-    $("#tr_phase2_ShoppingBg").trigger("click")
-
-
-    let numItems = $(".number-items.boss-number-items.nonzero-items").text();
-    let subtotal = $(".subtotal").text();
-    let images = [...$(".kas-newpb-product-image")].map((el) => el.src);
-
-    console.log(
-      "items: ",
-      numItems,
-      "subtotal: ",
-      subtotal,
-      "images: ",
-      images
-    );
-
+  console.log("items: ", numItems, "subtotal: ", subtotal, "images: ", images);
 
   const popup = () => {
     const popupDiv = $('<div id="popup"> </div>');
@@ -37,15 +21,30 @@ $(document).ready(() => {
       transform: "translate(-50%, -50%)",
     });
 
-    popupDiv.append(`<div id="numItems"> Items in cart:  ${numItems} </div>`)
-    popupDiv.append(`<div id="subtotal"> Subtotal:  ${subtotal} </div>`)
+    popupDiv.append('<button type="button" id="dismissPopup"> X </button>');
+    //      dismiss button action
+    $("#dismissPopup").css("float", "right");
+    popupDiv.append('<div id="redirectCart"> Go back to cart </div>');
+    popupDiv.append(`<div id="numItems"> Items in cart:  ${numItems} </div>`);
+    popupDiv.append(`<div id="subtotal"> Subtotal:  ${subtotal} </div>`);
 
     //renders cart images in popup div
-    $.map(images, el => {
-    	popupDiv.append(`<img id="cartImage" src="${el}" width=25% height=25% />`)
-    })
-  };
+    $.map(images, (el) => {
+      popupDiv.append(
+        `<img id="cartImage" src="${el}" width=25% height=25% />`
+      );
+    });
 
+    $("#container").on("click", "#dismissPopup", () => {
+      console.log("X was clicked");
+      $("#popup").hide();
+    });
+
+    $("#redirectCart").click(() => {
+      console.log("redirect clicked");
+      $("#redirectCart").css("float", "right");
+    });
+  };
 
   const overlay = () => {
     const overlayDiv = $('<div id="overlay"> </div>').css({
@@ -60,13 +59,14 @@ $(document).ready(() => {
       display: "none",
     });
 
-    overlayDiv.appendTo(document.body);
+    overlayDiv.appendTo($("#container"));
 
     //hides banners
     $(".hp2-creative").hide();
     $("#header").hide();
     $("#open-drawer").hide();
-
+    $(".slick-track").hide();
+    $("#tce-hp-ml-1").hide();
 
     $("#overlay").fadeIn();
   };
@@ -81,6 +81,4 @@ $(document).ready(() => {
       popup();
     }
   });
-});
-
-
+})();
