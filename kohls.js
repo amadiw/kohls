@@ -1,4 +1,4 @@
-(kohls => {
+((kohls) => {
   $("#tr_phase2_ShoppingBg").trigger("click");
 
   let numItems = $(".number-items.boss-number-items.nonzero-items").text();
@@ -12,7 +12,6 @@
     const popupDiv = $('<div id="popup"> </div>');
 
     popupDiv.prependTo($("#overlay")).css({
-//       display: "none",
       position: "fixed",
       height: "300px",
       width: "600px",
@@ -26,7 +25,9 @@
     popupDiv.append('<button type="button" id="close"> X </button>');
     //      dismiss button action
     $("#close").css("float", "right");
-    popupDiv.append('<div id="redirectCart"> Go back to cart </div>');
+    popupDiv.append('<button id="redirectCart"> Go to cart </button>');
+    $("#redirectCart").css("background-color", "#008000");
+
     popupDiv.append(`<div id="numItems"> Items in cart:  ${numItems} </div>`);
     popupDiv.append(`<div id="subtotal"> Subtotal:  ${subtotal} </div>`);
 
@@ -37,25 +38,21 @@
       );
     });
 
-
-    //close popup
-    //if display === hide, change to show, otherwise run click function
     $("#close").click(() => {
-      console.log('POPUP CLICKED')
-      $("#overlay").hide()
-
-//       $("#popup").css('background-color', 'green') //why does this work and hide doesn't!!!
-    })
-
-//     if($("#overlay") && $("#overlay").css('display') !== 'block') {
-//       console.log('if statement true')
-//       $("#overlay").show()
-//     }
-
+      $("#close").data("clicked", true);
+      $("#overlay").hide();
+      setTimeout(() => {
+        if ($("#close").data("clicked")) {
+          $("#overlay").show();
+        }
+      }, 300);
+    });
 
     $("#redirectCart").click(() => {
-      console.log("redirect clicked");
-      $(location).attr('href', 'https://www.kohls.com/checkout/shopping_cart.jsp')
+      $(location).attr(
+        "href",
+        "https://www.kohls.com/checkout/shopping_cart.jsp"
+      );
     });
   };
 
@@ -81,7 +78,7 @@
     $("#open-drawer").hide();
     $(".slick-track").hide();
     $("#tce-hp-ml-1").hide();
-    $("#oo_tab").hide()
+    $("#oo_tab").hide();
 
     $("#overlay").show();
   };
@@ -96,12 +93,7 @@
       0.9
     ) {
       overlay();
-
-
       popup();
-      console.log('overlay display:', $("#overlay").css('display'))
     }
   });
-
-
 })();
