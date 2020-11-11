@@ -12,6 +12,7 @@
     const popupDiv = $('<div id="popup"> </div>');
 
     popupDiv.prependTo($("#overlay")).css({
+//       display: "none",
       position: "fixed",
       height: "300px",
       width: "600px",
@@ -36,20 +37,25 @@
       );
     });
 
+
     //close popup
+    //if display === hide, change to show, otherwise run click function
     $("#close").click(() => {
       console.log('POPUP CLICKED')
       $("#overlay").hide()
+
 //       $("#popup").css('background-color', 'green') //why does this work and hide doesn't!!!
     })
-    // $("#container").on("click", "#dismissPopup", () => {
-    //   console.log("X was clicked");
-    //   $("#popup").hide();
-    // });
+
+//     if($("#overlay") && $("#overlay").css('display') !== 'block') {
+//       console.log('if statement true')
+//       $("#overlay").show()
+//     }
+
 
     $("#redirectCart").click(() => {
       console.log("redirect clicked");
-      $("#redirectCart").css("float", "right");
+      $(location).attr('href', 'https://www.kohls.com/checkout/shopping_cart.jsp')
     });
   };
 
@@ -77,7 +83,7 @@
     $("#tce-hp-ml-1").hide();
     $("#oo_tab").hide()
 
-    $("#overlay").fadeIn();
+    $("#overlay").show();
   };
 
   //trigger when user scrolls >=90% of page
@@ -90,7 +96,12 @@
       0.9
     ) {
       overlay();
+
+
       popup();
+      console.log('overlay display:', $("#overlay").css('display'))
     }
   });
+
+
 })();
