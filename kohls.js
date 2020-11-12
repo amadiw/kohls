@@ -1,4 +1,4 @@
-((kohls) => {
+((kohlsCart) => {
   $("#tr_phase2_ShoppingBg").trigger("click");
 
   let numItems = $(".number-items.boss-number-items.nonzero-items").text();
@@ -13,8 +13,8 @@
 
     popupDiv.prependTo($("#overlay")).css({
       position: "fixed",
-      height: "auto",
-      width: "60%",
+      height: "370px",
+      width: "560px",
       overflow: "scroll",
       background: "white",
       position: "absolute",
@@ -31,24 +31,42 @@
 
     $('.text').css({
       fontfamily: "verdana,helvetica,arial,sans-serif",
-      fontSize: "20px",
+      fontSize: "18px",
       color: "black",
-      margin: "25px"
+      marginLeft: "20px",
+      marginBottom: "10px"
     })
 
-    popupDiv.append('<button type="button" id="close" class="text"> X </button>');
-    //      dismiss button action
-    $("#close").css("float", "right");
-    popupDiv.append('<button id="redirectCart"> Go to cart </button>');
-    $("#redirectCart").css("background-color", "#008000");
-
-    popupDiv.append(`<div id="numItems" class="text"> SHOPPING CART(${numItems})   </div>`);
+    popupDiv.append('<button type="button" id="close"> X </button>');
+    popupDiv.append('<button id="redirectBtn" > Go to cart </button>');
+    popupDiv.append(`<div id="numItems" class="text"> SHOPPING CART (${numItems})</div>`);
     popupDiv.append(`<div id="subtotal" class="text"> SUBTOTAL:  ${subtotal} </div>`);
 
+
+    $("#close").css({
+      float: "right",
+      backgroundColor: "rgba(255, 255, 255)",
+      fontSize: '22px',
+//       height: '26px',
+//       width: 'auto',
+      font: 'arial',
+      margin: '20px'
+
+    });
+
+    $("#redirectBtn").css({
+       backgroundColor: "#008000",
+       fontfamily: "verdana,helvetica,arial,sans-serif",
+       fontSize: '18px',
+       color: 'white',
+       margin: '20px',
+       height: '40px',
+       width: '200px'
+       });
     //renders cart images in popup div
     $.map(images, (el) => {
       popupDiv.append(
-        `<img class="cartImage" src="${el}" width=15% height=auto />`
+        `<img class="cartImage" src="${el}" width='180px' height='180px' />` //width=25% height=auto
       );
     });
 
@@ -63,7 +81,7 @@
       }, 300);
     });
 
-    $("#redirectCart").click(() => {
+    $("#redirectBtn").click(() => {
       $(location).attr(
         "href",
         "https://www.kohls.com/checkout/shopping_cart.jsp"
