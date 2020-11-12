@@ -13,30 +13,45 @@
 
     popupDiv.prependTo($("#overlay")).css({
       position: "fixed",
-      height: "300px",
-      width: "600px",
+      height: "auto",
+      width: "60%",
+      overflow: "scroll",
       background: "white",
       position: "absolute",
       top: "50%",
       left: "50%",
       transform: "translate(-50%, -50%)",
+      border: "10px solid #157D9A" //#157D9A
+
+//       fontfamily: "verdana,helvetica,arial,sans-serif",
+//       fontsize: "20px",
+//       font: "black"
+
     });
 
-    popupDiv.append('<button type="button" id="close"> X </button>');
+    $('.text').css({
+      fontfamily: "verdana,helvetica,arial,sans-serif",
+      fontSize: "20px",
+      color: "black",
+      margin: "25px"
+    })
+
+    popupDiv.append('<button type="button" id="close" class="text"> X </button>');
     //      dismiss button action
     $("#close").css("float", "right");
     popupDiv.append('<button id="redirectCart"> Go to cart </button>');
     $("#redirectCart").css("background-color", "#008000");
 
-    popupDiv.append(`<div id="numItems"> Items in cart:  ${numItems} </div>`);
-    popupDiv.append(`<div id="subtotal"> Subtotal:  ${subtotal} </div>`);
+    popupDiv.append(`<div id="numItems" class="text"> SHOPPING CART(${numItems})   </div>`);
+    popupDiv.append(`<div id="subtotal" class="text"> SUBTOTAL:  ${subtotal} </div>`);
 
     //renders cart images in popup div
     $.map(images, (el) => {
       popupDiv.append(
-        `<img id="cartImage" src="${el}" width=25% height=25% />`
+        `<img class="cartImage" src="${el}" width=15% height=auto />`
       );
     });
+
 
     $("#close").click(() => {
       $("#close").data("clicked", true);
